@@ -63,10 +63,10 @@ export function validate(config: Record<string, unknown>) {
       }
     });
 
-    let errorMessage = '\n❌ Environment validation failed!\n\n';
+    let errorMessage = '\nEnvironment validation failed!\n\n';
 
     if (missingVariables.length > 0) {
-      errorMessage += '📋 Missing required environment variables:\n';
+      errorMessage += 'Missing required environment variables:\n';
       missingVariables.forEach((variable) => {
         errorMessage += `   - ${variable}\n`;
       });
@@ -74,7 +74,7 @@ export function validate(config: Record<string, unknown>) {
     }
 
     if (invalidVariables.length > 0) {
-      errorMessage += '⚠️  Invalid environment variables:\n';
+      errorMessage += 'Invalid environment variables:\n';
       invalidVariables.forEach((variable) => {
         errorMessage += `   - ${variable}\n`;
       });
@@ -82,7 +82,7 @@ export function validate(config: Record<string, unknown>) {
     }
 
     errorMessage +=
-      '💡 Please check your .env file and ensure all required variables are set.\n';
+      'Please check your .env file and ensure all required variables are set.\n';
     errorMessage += '   Reference: .env.example\n';
 
     throw new Error(errorMessage);

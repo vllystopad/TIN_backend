@@ -15,6 +15,7 @@ export class BarberService {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    // note: https://typeorm.io/docs/relations/many-to-many-relations (end of the page)
     @Column()
     barberId: string;
 

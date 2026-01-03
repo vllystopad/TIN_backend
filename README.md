@@ -100,7 +100,6 @@ JWT_EXPIRES_IN=7d
 
 ### Utilities
 - `reflect-metadata` ^0.2.2
-- `rxjs` ^7.8.1
 
 ## API Documentation
 

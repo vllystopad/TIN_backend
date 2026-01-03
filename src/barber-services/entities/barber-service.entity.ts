@@ -1,49 +1,48 @@
 import {
-    Entity,
-    PrimaryGeneratedColumn,
-    Column,
-    CreateDateColumn,
-    UpdateDateColumn,
-    ManyToOne,
-    JoinColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Barber } from '../../barbers/entities/barber.entity';
 import { Service } from '../../services/entities/service.entity';
 
 @Entity('barber_services')
 export class BarberService {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
 
-    // note: https://typeorm.io/docs/relations/many-to-many-relations (end of the page)
-    @Column()
-    barberId: string;
+  // note: https://typeorm.io/docs/relations/many-to-many-relations (end of the page)
+  @Column()
+  barberId: string;
 
-    @Column()
-    serviceId: string;
+  @Column()
+  serviceId: string;
 
-    @ManyToOne(() => Barber, (barber) => barber.barberServices, {
-        onDelete: 'CASCADE',
-    })
-    @JoinColumn({ name: 'barberId' })
-    barber: Barber;
+  @ManyToOne(() => Barber, (barber) => barber.barberServices, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'barberId' })
+  barber: Barber;
 
-    @ManyToOne(() => Service, (service) => service.barberServices, {
-        onDelete: 'CASCADE',
-    })
-    @JoinColumn({ name: 'serviceId' })
-    service: Service;
+  @ManyToOne(() => Service, (service) => service.barberServices, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'serviceId' })
+  service: Service;
 
-    @Column({ type: 'decimal', precision: 10, scale: 2 })
-    price: number;
+  @Column({ type: 'decimal', precision: 10, scale: 2 })
+  price: number;
 
-    @Column({ default: true })
-    isAvailable: boolean;
+  @Column({ default: true })
+  isAvailable: boolean;
 
-    @CreateDateColumn()
-    createdAt: Date;
+  @CreateDateColumn()
+  createdAt: Date;
 
-    @UpdateDateColumn()
-    updatedAt: Date;
+  @UpdateDateColumn()
+  updatedAt: Date;
 }
-

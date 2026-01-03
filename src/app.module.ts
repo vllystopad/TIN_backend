@@ -4,17 +4,23 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
 import { validate } from './config/env.validation';
+import { CustomerModule } from './customer/customer.module';
+import { SecurityModule } from './shared/security/security.module';
+import { CustomerAuthModule } from './features/auth/customerAuth.module';
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-            envFilePath: '.env',
-            validate,
-        }),
-        DatabaseModule,
-    ],
-    controllers: [AppController],
-    providers: [AppService],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+      validate,
+    }),
+    DatabaseModule,
+    SecurityModule,
+    CustomerModule,
+    CustomerAuthModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

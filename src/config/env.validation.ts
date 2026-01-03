@@ -1,11 +1,5 @@
 import { plainToInstance } from 'class-transformer';
-import {
-  IsString,
-  IsNotEmpty,
-  IsEnum,
-  IsNumber,
-  validateSync,
-} from 'class-validator';
+import { IsString, IsNotEmpty, IsEnum, IsNumber, validateSync } from 'class-validator';
 
 enum Environment {
   Development = 'development',
@@ -26,13 +20,29 @@ export class EnvironmentVariables {
   @IsNotEmpty()
   DATABASE_PATH: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  JWT_SECRET: string;
+  SALT_ROUNDS: number;
 
   @IsString()
   @IsNotEmpty()
-  JWT_EXPIRES_IN: string;
+  JWT_CUSTOMER_ACCESS_SECRET: string;
+
+  @IsString()
+  @IsNotEmpty()
+  JWT_CUSTOMER_ACCESS_EXPIRES_IN: string;
+
+  @IsString()
+  @IsNotEmpty()
+  JWT_CUSTOMER_REFRESH_SECRET: string;
+
+  @IsString()
+  @IsNotEmpty()
+  JWT_CUSTOMER_REFRESH_EXPIRES_IN: string;
+
+  @IsString()
+  @IsNotEmpty()
+  CORS_ORIGIN: string;
 }
 
 export function validate(config: Record<string, unknown>) {
@@ -56,9 +66,7 @@ export function validate(config: Record<string, unknown>) {
         if (constraints.isNotEmpty) {
           missingVariables.push(property);
         } else {
-          invalidVariables.push(
-            `${property}: ${Object.values(constraints).join(', ')}`,
-          );
+          invalidVariables.push(`${property}: ${Object.values(constraints).join(', ')}`);
         }
       }
     });
@@ -81,8 +89,7 @@ export function validate(config: Record<string, unknown>) {
       errorMessage += '\n';
     }
 
-    errorMessage +=
-      'Please check your .env file and ensure all required variables are set.\n';
+    errorMessage += 'Please check your .env file and ensure all required variables are set.\n';
     errorMessage += '   Reference: .env.example\n';
 
     throw new Error(errorMessage);
@@ -90,4 +97,3 @@ export function validate(config: Record<string, unknown>) {
 
   return validatedConfig;
 }
-

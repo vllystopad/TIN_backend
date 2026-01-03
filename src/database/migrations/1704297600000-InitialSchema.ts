@@ -106,21 +106,11 @@ export class InitialSchema1704297600000 implements MigrationInterface {
       )
     `);
 
-    await queryRunner.query(
-      `CREATE INDEX "IDX_CUSTOMER_EMAIL" ON "customers" ("email")`,
-    );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_CUSTOMER_TYPE" ON "customers" ("type")`,
-    );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_BARBER_EMAIL" ON "barbers" ("email")`,
-    );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_BARBER_ACTIVE" ON "barbers" ("isActive")`,
-    );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_SERVICE_ACTIVE" ON "services" ("isActive")`,
-    );
+    await queryRunner.query(`CREATE INDEX "IDX_CUSTOMER_EMAIL" ON "customers" ("email")`);
+    await queryRunner.query(`CREATE INDEX "IDX_CUSTOMER_TYPE" ON "customers" ("type")`);
+    await queryRunner.query(`CREATE INDEX "IDX_BARBER_EMAIL" ON "barbers" ("email")`);
+    await queryRunner.query(`CREATE INDEX "IDX_BARBER_ACTIVE" ON "barbers" ("isActive")`);
+    await queryRunner.query(`CREATE INDEX "IDX_SERVICE_ACTIVE" ON "services" ("isActive")`);
     await queryRunner.query(
       `CREATE INDEX "IDX_BARBER_SERVICE_BARBER" ON "barber_services" ("barberId")`,
     );
@@ -136,15 +126,11 @@ export class InitialSchema1704297600000 implements MigrationInterface {
     await queryRunner.query(
       `CREATE INDEX "IDX_APPOINTMENT_CUSTOMER" ON "appointments" ("customerId")`,
     );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_APPOINTMENT_BARBER" ON "appointments" ("barberId")`,
-    );
+    await queryRunner.query(`CREATE INDEX "IDX_APPOINTMENT_BARBER" ON "appointments" ("barberId")`);
     await queryRunner.query(
       `CREATE INDEX "IDX_APPOINTMENT_DATE" ON "appointments" ("appointmentDate")`,
     );
-    await queryRunner.query(
-      `CREATE INDEX "IDX_APPOINTMENT_STATUS" ON "appointments" ("status")`,
-    );
+    await queryRunner.query(`CREATE INDEX "IDX_APPOINTMENT_STATUS" ON "appointments" ("status")`);
     await queryRunner.query(
       `CREATE INDEX "IDX_APPOINTMENT_BARBER_DATE" ON "appointments" ("barberId", "appointmentDate")`,
     );
@@ -182,4 +168,3 @@ export class InitialSchema1704297600000 implements MigrationInterface {
     await queryRunner.query(`DROP TABLE "customers"`);
   }
 }
-

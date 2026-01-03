@@ -4,9 +4,11 @@ A modern backend application for managing barbershop appointments built with Nes
 
 ## Technology Stack
 
-- **Framework**: [NestJS](https://nestjs.com/) - A progressive Node.js framework for building efficient and scalable server-side applications
-- **Database**: [SQLite](https://www.sqlite.org/) - Lightweight, serverless database engine
-- **ORM**: [TypeORM](https://typeorm.io/) - Object-Relational Mapping library for TypeScript and JavaScript
+- **Framework**: [NestJS](https://nestjs.com/) ^11.0.1 - A progressive Node.js framework for building efficient and scalable server-side applications
+- **Database**: [SQLite](https://www.sqlite.org/) ^5.1.7 - Lightweight, serverless database engine
+- **ORM**: [TypeORM](https://typeorm.io/) ^0.3.28 - Object-Relational Mapping library for TypeScript and JavaScript
+- **Authentication**: [Passport](https://www.passportjs.org/) + JWT - Secure authentication system
+- **Validation**: [class-validator](https://github.com/typestack/class-validator) + class-transformer - DTO validation
 
 ## Project Overview
 
@@ -34,7 +36,7 @@ This application provides a comprehensive backend solution for barbershop appoin
 ### Prerequisites
 
 - Node.js (v18 or higher)
-- npm or yarn package manager
+- npm package manager
 
 ### Installation
 
@@ -55,17 +57,50 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-4. Run database migrations
-```bash
-npm run migration:run
-```
-
-5. Start the development server
+4. Start the development server
 ```bash
 npm run start:dev
 ```
 
 The API will be available at `http://localhost:5001`
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+PORT=5001
+NODE_ENV=development
+DATABASE_PATH=./database.sqlite
+JWT_SECRET=your-secret-key-change-in-production
+JWT_EXPIRES_IN=7d
+```
+
+## Installed Dependencies
+
+### Core Dependencies
+- `@nestjs/common` ^11.0.1
+- `@nestjs/core` ^11.0.1
+- `@nestjs/platform-express` ^11.0.1
+- `@nestjs/typeorm` ^11.0.0
+- `@nestjs/config` ^4.0.2
+- `typeorm` ^0.3.28
+- `sqlite3` ^5.1.7
+
+### Authentication & Security
+- `@nestjs/jwt` ^11.0.2
+- `@nestjs/passport` ^11.0.5
+- `passport` ^0.7.0
+- `passport-jwt` ^4.0.1
+- `bcrypt` ^6.0.0
+
+### Validation & Transformation
+- `class-validator` ^0.14.3
+- `class-transformer` ^0.5.1
+
+### Utilities
+- `reflect-metadata` ^0.2.2
+- `rxjs` ^7.8.1
 
 ## API Documentation
 
@@ -90,10 +125,12 @@ The application uses SQLite with TypeORM for data persistence. Key tables includ
 - `npm run start:dev` - Start development server with hot reload
 - `npm run start:debug` - Start server in debug mode
 - `npm run build` - Build the application
+- `npm run format` - Format code with Prettier
+- `npm run lint` - Lint and fix code with ESLint
 - `npm run test` - Run unit tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:cov` - Run tests with coverage
 - `npm run test:e2e` - Run end-to-end tests
-- `npm run migration:generate` - Generate new migration
-- `npm run migration:run` - Run pending migrations
 
 ### Project Structure
 
@@ -108,6 +145,32 @@ src/
 ├── services/            # Service catalog
 ├── database/            # Database configuration and migrations
 └── common/              # Shared utilities and decorators
+```
+
+## Code Quality
+
+The project uses:
+- **Prettier** for code formatting
+- **ESLint** with TypeScript support for linting
+- **EditorConfig** for consistent coding styles
+
+Run formatting and linting:
+```bash
+npm run format
+npm run lint
+```
+
+## Testing
+
+```bash
+# unit tests
+npm run test
+
+# e2e tests
+npm run test:e2e
+
+# test coverage
+npm run test:cov
 ```
 
 ## License

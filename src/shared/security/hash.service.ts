@@ -7,7 +7,7 @@ export class HashService {
   private readonly saltRounds: number;
 
   constructor(private readonly configService: ConfigService) {
-    this.saltRounds = Number(this.configService.get<number>('SALT_ROUNDS'));
+    this.saltRounds = Number(this.configService.get<number>('SALT_ROUNDS')!);
     if (!this.saltRounds) {
       throw new Error('Salt rounds are not defined');
     }

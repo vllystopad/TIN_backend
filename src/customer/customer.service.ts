@@ -12,7 +12,7 @@ export class CustomerService {
     @InjectRepository(Customer)
     private readonly customerRepository: Repository<Customer>,
     private readonly hashService: HashService,
-  ) { }
+  ) {}
 
   async create(createCustomerDto: CreateCustomerDto): Promise<Customer> {
     const existingCustomer = await this.customerRepository.findOne({
@@ -71,7 +71,10 @@ export class CustomerService {
     });
   }
 
-  async update(id: string, updateCustomerDto: Readonly<Partial<CreateCustomerDto>>): Promise<Customer> {
+  async update(
+    id: string,
+    updateCustomerDto: Readonly<Partial<CreateCustomerDto>>,
+  ): Promise<Customer> {
     const customer = await this.findOne(id);
 
     if (updateCustomerDto.email && updateCustomerDto.email !== customer.email) {

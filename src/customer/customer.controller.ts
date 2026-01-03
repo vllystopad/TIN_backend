@@ -14,7 +14,7 @@ import { CreateCustomerDto } from './dto/create-customer.dto';
 
 @Controller('customers')
 export class CustomerController {
-  constructor(private readonly customerService: CustomerService) { }
+  constructor(private readonly customerService: CustomerService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)

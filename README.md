@@ -57,12 +57,29 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-4. Start the development server
+4. **Create database and run migrations**
+```bash
+npm run db:create
+```
+
+5. Start the development server
 ```bash
 npm run start:dev
 ```
 
 The API will be available at `http://localhost:5001`
+
+### Quick Start (For Teachers/Reviewers)
+
+After cloning the project, run these commands:
+
+```bash
+npm install
+npm run db:create
+npm run start:dev
+```
+
+That's it! The database will be created automatically with all tables.
 
 ## Environment Variables
 
@@ -120,12 +137,24 @@ The application uses SQLite with TypeORM for data persistence. Key tables includ
 
 ### Available Scripts
 
+#### Development
 - `npm run start` - Start production server
 - `npm run start:dev` - Start development server with hot reload
 - `npm run start:debug` - Start server in debug mode
 - `npm run build` - Build the application
+
+#### Database
+- `npm run db:create` - Build project and create database with migrations (first time setup)
+- `npm run db:init` - Run migrations on already built project
+- `npm run migration:run` - Run pending migrations
+- `npm run migration:revert` - Revert last migration
+- `npm run schema:drop` - Drop all database tables
+
+#### Code Quality
 - `npm run format` - Format code with Prettier
 - `npm run lint` - Lint and fix code with ESLint
+
+#### Testing
 - `npm run test` - Run unit tests
 - `npm run test:watch` - Run tests in watch mode
 - `npm run test:cov` - Run tests with coverage

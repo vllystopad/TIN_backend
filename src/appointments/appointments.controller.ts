@@ -22,15 +22,21 @@ import { CustomerAuthGuard } from 'src/features/auth/guards/customer-auth.guard'
 export class AppointmentsController {
   constructor(private readonly appointmentsService: AppointmentsService) { }
 
-  @Post('barber/:barberId')
+  @Get('barbers-with-services')
+  @HttpCode(HttpStatus.OK)
+  async getAppointmentData(@Request() req: any) {
+    const customerId = req.user.sub;
+    return await this.appointmentsService.getAppointmentData(customerId);
+  }
+
+  @Post()
   @HttpCode(HttpStatus.CREATED)
   async create(
     @Request() req: any,
-    @Param('barberId') barberId: string,
     @Body() createAppointmentDto: CreateAppointmentDto,
   ): Promise<Appointment> {
     const customerId = req.user.sub;
-    return await this.appointmentsService.create(customerId, barberId, createAppointmentDto);
+    return await this.appointmentsService.create(customerId, createAppointmentDto);
   }
 
   @Get()

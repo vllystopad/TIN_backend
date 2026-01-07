@@ -36,3 +36,4 @@ export class CreateAppointmentDto {
   status?: AppointmentStatus;
 }
 
+

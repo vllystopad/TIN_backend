@@ -10,3 +10,4 @@ export class CreateBarberServiceDto {
   isAvailable?: boolean;
 }
 
+

@@ -149,6 +149,8 @@ export class CustomerAuthService {
         throw new UnauthorizedException();
       }
 
+      console.log('payload', payload);
+
       return payload;
     } catch (error) {
       throw new UnauthorizedException();

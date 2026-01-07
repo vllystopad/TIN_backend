@@ -98,6 +98,11 @@ export class CustomerService {
     return await this.customerRepository.save(customer);
   }
 
+  async remove(id: string): Promise<void> {
+    const customer = await this.findOne(id);
+    await this.customerRepository.remove(customer);
+  }
+
   async delete(id: string): Promise<{ message: string }> {
     const customer = await this.findOne(id);
 

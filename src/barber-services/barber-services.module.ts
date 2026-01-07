@@ -12,3 +12,4 @@ import { BarberService } from './entities/barber-service.entity';
 })
 export class BarberServicesModule {}
 
+
